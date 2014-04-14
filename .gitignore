@@ -1,0 +1,11 @@
+*~
+*.o
+*.lst
+/.dep/
+/LUFA101122/
+midifighterpro.eep
+midifighterpro.elf
+midifighterpro.hex
+midifighterpro.lss
+midifighterpro.map
+midifighterpro.sym
