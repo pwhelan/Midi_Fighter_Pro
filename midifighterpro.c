@@ -621,6 +621,20 @@ void Midifighter_Task(void)
 
     } // fourbanks setup
 
+    // Process MIDI note events for MIDI banks
+    if (g_key_fourbanks_mode == FOURBANKS_EXTERNAL) {
+        for (uint8_t bank_note = 0; bank_note < 4; bank_note++) {
+            if (g_midi_note_state[bank_note]) {
+                if (g_key_bank_selected != bank_note) {
+                    g_key_bank_selected = bank_note;
+                    midi_stream_note(bank_note, true);
+                    midi_stream_note(bank_note, false);
+                }
+                g_midi_note_state[bank_note] = 0;
+            }
+        }
+    }
+
     // Update the active bank
     // ----------------------
     if (bank_keydown & 0x000f) {
